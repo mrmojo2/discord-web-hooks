@@ -1,4 +1,5 @@
 const express = require("express")
+const axios = require("axios")
 const app = express()
 
 app.use(express.json())
@@ -10,6 +11,11 @@ app.get('/',(req,res)=>{
 
 app.post('/',(req,res)=>{
     console.log(req.body.entry[0].changes)
+
+    //await axios.post(discord web hook ko url,{
+    // body tei facebo
+    //})
+
     res.status(200)
 })
 
