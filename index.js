@@ -1,6 +1,8 @@
 const express = require("express")
 const axios = require("axios")
 const app = express()
+const dotEnv = require('dotenv')
+dotEnv.config()
 
 app.use(express.json())
 
@@ -9,13 +11,11 @@ app.get('/',(req,res)=>{
     res.send(req.query['hub.challenge'])
 })
 
-app.post('/',(req,res)=>{
+app.post('/',async (req,res)=>{
     console.log(req.body.entry[0].changes)
-
-    //await axios.post(discord web hook ko url,{
-    // body tei facebo
-    //})
-
+    await axios.post(process.env.DISCORD_WEBHOOK_URL,{
+        content:"notif from facebook webhook"
+    })
     res.status(200)
 })
 
